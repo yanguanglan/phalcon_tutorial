@@ -11,6 +11,14 @@ try {
   //Create a DI
   $di = new Phalcon\DI\FactoryDefault();
 
+  // Create DB connection
+  $di->set('db', function() {
+    return new \Phalcon\Db\Adapter\Pdo\Postgresql(array(
+      "host" => "localhost",
+      "dbname" => "phalcon_test"
+    ));
+  });
+
   //Setup the view component
   $di->set('view', function(){
       $view = new \Phalcon\Mvc\View();
